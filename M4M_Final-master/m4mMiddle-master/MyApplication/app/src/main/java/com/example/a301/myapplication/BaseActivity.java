@@ -1,7 +1,13 @@
 package com.example.a301.myapplication;
 
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
@@ -21,6 +27,7 @@ public class BaseActivity extends AppCompatActivity {
     public static ArrayList<Model_Lecture> lectureList;
     public static ArrayList<Model_Student> studentList;
     public static ArrayList<Model_Notify> notifyList;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +40,6 @@ public class BaseActivity extends AppCompatActivity {
 
         DataManager_Notify dmN = new DataManager_Notify();
         dmN.loadData();
-
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

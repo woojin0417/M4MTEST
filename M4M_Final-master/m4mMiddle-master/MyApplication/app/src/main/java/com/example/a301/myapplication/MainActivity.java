@@ -6,8 +6,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     public int soundSet=-1;
 
 
+
+
     private BeaconManager beaconManager;
     private Region region;
     private Region region2;
@@ -109,10 +113,13 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("여기는 메인"," ");
 
         currentSTUlist= new ArrayList<>();
 
@@ -181,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         beaconManager = new BeaconManager(this);
 
         beaconManager.setRangingListener(new BeaconManager.RangingListener() {
+
 
             Context context = getApplicationContext();
             AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);

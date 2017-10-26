@@ -14,6 +14,7 @@ import com.example.a301.myapplication.Controller.Adapter_Lecture;
 import com.example.a301.myapplication.Controller.BottomNavigationViewHelper;
 import com.example.a301.myapplication.Controller.TimeManager;
 import com.example.a301.myapplication.Model.Model_Lecture;
+import com.example.a301.myapplication.Model.Model_Student;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class ScheduleActivity extends AppCompatActivity {
     LinearLayoutManager manager;
     Adapter_Lecture adapter_schedule;
     ArrayList<Model_Lecture> tempList;
-
+    ArrayList<Model_Student> currentSTUlist;
     private BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -58,6 +59,19 @@ public class ScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schedule);
 
         tempList=new ArrayList<>();
+        currentSTUlist= new ArrayList<>();
+        for(int i=0; i<BaseActivity.studentList.size();i++) {
+            if(BaseActivity.studentList.get(i).getStudentNum().equals(BaseActivity.currentStudent))
+            {
+                String _studentNum = BaseActivity.studentList.get(i).getStudentNum();
+                String _lecture1 = BaseActivity.studentList.get(i).getLecture1();
+                String _lecture2 = BaseActivity.studentList.get(i).getLecture2();
+                String _lecture3 = BaseActivity.studentList.get(i).getLecture3();
+                String _password= BaseActivity.studentList.get(i).getPassword();
+                String _name =BaseActivity.studentList.get(i).getName();
+                currentSTUlist.add(new Model_Student(_studentNum, _lecture1, _lecture2, _lecture3,_password,_name));
+            }
+        }
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_schedule);
@@ -77,9 +91,9 @@ public class ScheduleActivity extends AppCompatActivity {
 
         for (int i = 0; i < BaseActivity.lectureList.size(); i++) {
 
-            if (BaseActivity.studentList.get(0).getLecture1().equals(BaseActivity.lectureList.get(i).getLecture())
-                    || BaseActivity.studentList.get(0).getLecture2().equals(BaseActivity.lectureList.get(i).getLecture())
-                    || BaseActivity.studentList.get(0).getLecture3().equals(BaseActivity.lectureList.get(i).getLecture())
+            if (currentSTUlist.get(0).getLecture1().equals(BaseActivity.lectureList.get(i).getLecture())
+                    || currentSTUlist.get(0).getLecture2().equals(BaseActivity.lectureList.get(i).getLecture())
+                    || currentSTUlist.get(0).getLecture3().equals(BaseActivity.lectureList.get(i).getLecture())
                     )
             {
 

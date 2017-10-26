@@ -1,9 +1,14 @@
 package com.example.a301.myapplication;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,17 +21,28 @@ public class LoginActivity extends Activity {
     EditText edt_pw;
     Button btn_login;
     String loginId, loginPwd;
+
     //String studentNum;
     //String password;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        NotificationManager n = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if(n.isNotificationPolicyAccessGranted()) {
+            AudioManager mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        }else{
+            // Ask the user to grant access
+            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+            startActivity(intent);
+        }
 
         edt_id = (EditText) findViewById(R.id.edt_id);
         edt_pw = (EditText) findViewById(R.id.edt_pw);
         btn_login = (Button) findViewById(R.id.btn_login);
+
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         loginId = auto.getString("edt_id",null);
         loginPwd = auto.getString("edt_pw",null);
@@ -53,14 +69,16 @@ public class LoginActivity extends Activity {
             btn_login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("뭔데 시발아7777777",edt_id.getText().toString());
+                    //Log.d("뭔데 시발아7777777",edt_id.getText().toString());
                     boolean loginFlag = false;
-                    Log.d("뭔데 시발아33333",edt_id.getText().toString());
+
                     for (int i = 0; i < BaseActivity.studentList.size(); i++) {
                         if (edt_id.getText().toString().equals(BaseActivity.studentList.get(i).getStudentNum())
                                 && edt_pw.getText().toString().equals(BaseActivity.studentList.get(i).getPassword())) { // 여기에 && 사용, 비밀번호 일치 여부도 구현
                             Log.d("뭔데 시발아2222",edt_id.getText().toString());
+
                             BaseActivity.currentStudent =edt_id.getText().toString();
+
                             Log.d("뭔데 시발아",edt_id.getText().toString());
 
                             SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
