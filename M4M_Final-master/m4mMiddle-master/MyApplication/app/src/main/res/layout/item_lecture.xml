@@ -14,7 +14,7 @@
         android:id="@+id/testItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
+        android:background="#97aad4"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="0.5"
-            android:background="@android:color/black"
+            android:background="#97aad4"
             android:orientation="vertical">
 
             <TextView
@@ -75,7 +75,7 @@
             android:layout_marginRight="3dp"
             android:layout_marginTop="3dp"
             android:layout_weight="1"
-            android:background="@android:color/black"
+            android:background="#97aad4"
             android:orientation="vertical">
 
             <TextView
@@ -86,7 +86,7 @@
                 android:background="@android:color/white"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
-                android:text="일반 강의"
+                android:text="@string/schedule_lectureType"
                 android:textColor="@android:color/holo_orange_dark" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:background="@android:color/white"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
-                android:text="강의 교수" />
+                android:text="@string/schedule_professor" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

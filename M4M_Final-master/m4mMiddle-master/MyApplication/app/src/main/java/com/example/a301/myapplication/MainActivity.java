@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+    public String strFinishTime="2359";
     private BeaconManager beaconManager;
     private Region region;
     private Region region2;
@@ -215,23 +215,17 @@ public class MainActivity extends AppCompatActivity {
                         String nowTime = tempStr[1];
                         int nowIntTime = Integer.parseInt(nowTime);
 
-                        for (int i = 0; i < todayList.size(); i++) {
+                        int intFinishTime =Integer.parseInt(strFinishTime);
 
-                            Log.d("플래그값은", " " + FLAG);
-                            Log.d("플래그값은", "현재시간" + nowIntTime);
-                            int finishTisTime = Integer.parseInt(todayList.get(i).getLectureFinishTime());
-                            Log.d("플래그값은", "finish시간" + finishTisTime);
-
-                            if (finishTisTime <= nowIntTime) {
-                                FLAG = false;
-                                silentFLAG = false;
-                                if (soundSet == 0) {
-                                    mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                                } else if (soundSet == 1) {
-                                    mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-                                } else if (soundSet == 2) {
-                                    mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                                }
+                        if (intFinishTime <= nowIntTime) {
+                            FLAG = false;
+                            silentFLAG = false;
+                            if (soundSet == 0) {
+                                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                            } else if (soundSet == 1) {
+                                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                            } else if (soundSet == 2) {
+                                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                             }
                         }
                         // 지금수업중이던 수업이 끝나고 나면 다시 수업 탐색, 원래 소리로 복귀
@@ -282,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
                                             int startTimePlus10 = Integer.parseInt(str2);
                                             int startTimePlus30 = Integer.parseInt(str3);
                                             int finishTime = Integer.parseInt(tempList.get(i).getLectureFinishTime());
+                                            strFinishTime=tempList.get(i).getLectureFinishTime();
 
                                             Log.d("This startTimeMinus10", "is  " + startTimeMinus10);
                                             Log.d("This startTimePlus10", "is  " + startTimePlus10);
