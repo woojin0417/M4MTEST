@@ -6,7 +6,8 @@
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:alpha="0.5">
 
 
     <LinearLayout
@@ -25,7 +26,7 @@
             android:background="@android:color/white"
             android:gravity="center"
             android:text="날짜"
-            android:textColor="?attr/colorAccent"
+            android:textColor="@android:color/black"
             android:textSize="20sp" />
 
         <TextView

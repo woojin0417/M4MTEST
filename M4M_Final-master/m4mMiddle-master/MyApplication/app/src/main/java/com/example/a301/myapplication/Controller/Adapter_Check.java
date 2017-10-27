@@ -12,10 +12,7 @@ import android.widget.TextView;
 import com.example.a301.myapplication.Model.Model_Check;
 import com.example.a301.myapplication.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -63,7 +60,7 @@ public class Adapter_Check extends  RecyclerView.Adapter<Adapter_Check.ViewHolde
             holder.lectureTv.setText(tempArr.get(position).getLecture());
             switch (tempArr.get(position).getAttendanceState()) {
                 case "출석":
-                    holder.lectureDateTv.setTextColor(Color.GREEN);
+                    holder.lectureDateTv.setTextColor(Color.parseColor("#0099cc"));
                     break;
                 case "지각":
                     holder.lectureDateTv.setTextColor(Color.parseColor("#e8b12b"));

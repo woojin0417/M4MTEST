@@ -1,10 +1,12 @@
 package com.example.a301.myapplication;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,7 +18,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public CheckVO repo;
 
     public ArrayList<Model_Student> currentSTUlist;
-
+    ImageView btn_logout;
     TextView tv_data;
     TextView tv_date;
 
@@ -138,10 +143,26 @@ public class MainActivity extends AppCompatActivity {
 
         tv_data = (TextView) findViewById(R.id.tv_data);
         tv_date = (TextView) findViewById(R.id.tv_date);
-
-        tv_data.setText("["+ currentSTUlist.get(0).getName()+"]" + " (" + BaseActivity.currentStudent + ") ");
+        btn_logout=(ImageView)findViewById(R.id.btn_logout);
+        tv_data.setText("[ "+ currentSTUlist.get(0).getName()+" ]" + " ( " + BaseActivity.currentStudent + " )");
         tv_date.setText(new TimeManager().getCurrentDate());
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BaseActivity.class);
 
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = auto.edit();
+                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                editor.clear();
+                editor.commit();
+                Toast.makeText(MainActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                finish();
+
+
+            }
+        });
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
         BottomNavigationViewHelper.disableShiftMode(navigation);

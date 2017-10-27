@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.example.a301.myapplication.Data.DataManager_Notify;
 import com.example.a301.myapplication.Data.DataManager_Student;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 public class BaseActivity extends AppCompatActivity {
 
     public static String currentStudent;
-
+    TextView textView1;
+    TextView textView2;
     public static ArrayList<Model_Lecture> lectureList;
     public static ArrayList<Model_Student> studentList;
     public static ArrayList<Model_Notify> notifyList;
@@ -27,11 +29,11 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //getSupportActionBar().hide();
         lectureList = new ArrayList<>();
         studentList= new ArrayList<>();
         notifyList=new ArrayList<>();
+
+
 
         DataManager_Notify dmN = new DataManager_Notify();
         dmN.loadData();

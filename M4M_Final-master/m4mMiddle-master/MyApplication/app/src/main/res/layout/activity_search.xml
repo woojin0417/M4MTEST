@@ -18,7 +18,7 @@
             android:layout_weight="0.8"
             android:gravity="center"
             android:text="personal data"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -55,7 +55,9 @@
             android:layout_height="30dp"
             android:layout_margin="5dp"
             android:background="@color/colorPrimaryDark"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -102,6 +104,7 @@
             android:id="@+id/checkRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/sejong"
             android:layout_marginTop="5dp"
             android:layout_weight="1" />
     </LinearLayout>
